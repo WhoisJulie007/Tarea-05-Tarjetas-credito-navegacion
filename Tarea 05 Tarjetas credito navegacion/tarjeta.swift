@@ -82,9 +82,7 @@ struct tarjeta: View {
             
         }
         .modifier(tarjetaViewModifier(altura: altura, colortarjeta: colortarjeta, efecto: $efecto))
-        .gesture(TapGesture().onEnded{ _ in
-                           self.showAlert.toggle()
-                   })
+        
                    
         
 }
