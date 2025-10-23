@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct transaccionesView: View {
+    var tarjetaImprimir: tarjetaModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        tarjeta(tarjetaModel:  tarjetaImprimir,  altura: 220, selectedCard: .constant(1))
+        Spacer()
+        
+        Text("Estas seleccionando la tarjeta: \(tarjetaImprimir.index)")
     }
 }
 
 #Preview {
-    transaccionesView()
+    let x = tarjetaModel(banco: "Mercado Pago", fotobanco: "mercadopago", numero: "1234 5678 9012", nombre: "Julia Maydeli Castan ", logo: "String",colortarjeta: Color.blue, index: 1)
+    transaccionesView(tarjetaImprimir: x)
 }

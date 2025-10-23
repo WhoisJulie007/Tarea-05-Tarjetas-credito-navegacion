@@ -8,28 +8,23 @@
 import SwiftUI
 
 struct transacciones: View {
-    @State var cuadrito: Color = .blue
-    @State var icono: String = "train.side.front.car"
-    @State var texto: String = "Narita Airport"
-    @State var precio: String = "$1200"
-    @State var destino: String = "De Tampico a Narita"
-    @State var fecha: String = "13/10/25"
+    var transaccion: transaccionesModel
     
     var body: some View {
         VStack{
             HStack{
                 ZStack{
-                    Image(systemName: icono)
+                    Image(systemName: transaccion.icono)
                         .foregroundStyle(.white)
                     
                 }
                 .frame(width: 50, height: 50)
-                .background(cuadrito)
+                .background(transaccion.cuadrito)
                 .cornerRadius(5)
                 VStack(alignment: .leading){
                     HStack{
-                        Text(texto)
-                        Text(precio)
+                        Text(transaccion.texto)
+                        Text(transaccion.precio)
                         Image(systemName: "chevron.forward")
                             .resizable()
                             .frame(width: 10, height: 10)
@@ -37,10 +32,10 @@ struct transacciones: View {
                         
                     }
                     
-                    Text(destino)
+                    Text(transaccion.destino)
                         .font(.caption)
                         .foregroundColor(.gray)
-                    Text(fecha)
+                    Text(transaccion.fecha)
                         .font(.caption)
                         .foregroundColor(.gray)
                 }.padding(.trailing)
@@ -57,5 +52,18 @@ struct transacciones: View {
 }
 
 #Preview {
-    transacciones(cuadrito: .blue, icono: "train.side.front.car", texto: "Narita Airport", precio: "$2000", destino: "De Tampico a Narita", fecha: "13/10/25")
+    let  trans1 = transaccionesModel(cuadrito: Color.black ,icono: "train.side.front.car", texto: "Narita Airport", precio: "1200",destino: "Narita Airport", fecha: "13/10/25")
+    transacciones(transaccion: trans1)
 }
+
+//#Preview {
+//    let x = tarjetaModel(banco: "Mercado Pago", fotobanco: "mercadopago", numero: "1234 5678 9012", nombre: "Julia Maydeli Castan ", logo: "String",colortarjeta: Color.blue, index: 1)
+//    tarjeta(tarjetaModel:  x,  altura: 220, selectedCard: .constant(1))
+//}
+
+//var cuadrito: Color = .blue
+// var icono: String = "train.side.front.car"
+// var texto: String = "Narita Airport"
+// var precio: String = "$1200"
+// var destino: String = "De Tampico a Narita"
+// var fecha: String = "13/10/25"
