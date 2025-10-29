@@ -11,44 +11,58 @@ struct transacciones: View {
     var transaccion: transaccionesModel
     
     var body: some View {
-        VStack{
-            HStack{
-                ZStack{
-                    Image(systemName: transaccion.icono)
-                        .foregroundStyle(.white)
-                    
-                }
-                .frame(width: 50, height: 50)
-                .background(transaccion.cuadrito)
-                .cornerRadius(5)
-                VStack(alignment: .leading){
-                    HStack{
-                        Text(transaccion.texto)
-                        Text(transaccion.precio)
-                        Image(systemName: "chevron.forward")
-                            .resizable()
-                            .frame(width: 10, height: 10)
-                            .foregroundColor(Color.gray)
-                        
-                    }
-                    
-                    Text(transaccion.destino)
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                    Text(transaccion.fecha)
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                }.padding(.trailing)
-                VStack{
-                    
-                }
-                
-            }
-            
-        }
-        
-        
-    }
+        HStack(alignment: .center, spacing: 12) {
+
+                   // Icono cuadrado con color de fondo
+                   ZStack {
+                       RoundedRectangle(cornerRadius: 10, style: .continuous)
+                           .fill(transaccion.cuadrito)
+                       Image(systemName: transaccion.icono)
+                           .foregroundStyle(.white)
+                           .font(.system(size: 20, weight: .semibold))
+                   }
+                   .frame(width: 50, height: 50)
+
+                   // Texto principal a la izquierda
+                   VStack(alignment: .leading, spacing: 2) {
+                       Text(transaccion.texto)
+                           .font(.body)
+                           .lineLimit(1)
+                           .truncationMode(.tail)
+
+                       Text(transaccion.destino)
+                           .font(.caption)
+                           .foregroundColor(.gray)
+                           .lineLimit(1)
+
+                       Text(transaccion.fecha)
+                           .font(.caption)
+                           .foregroundColor(.gray)
+                   }
+
+                   Spacer()
+
+                   // Precio + chevron alineados a la derecha
+                   HStack(spacing: 6) {
+                       Text(transaccion.precio)
+                           .font(.subheadline)
+                           .fontWeight(.semibold)
+                           .lineLimit(1)
+                       Image(systemName: "chevron.right")   // ¡no resizable!
+                           .font(.system(size: 12, weight: .semibold))
+                           .foregroundColor(.gray)
+                   }
+               }
+               .padding(.horizontal, 16)
+               .padding(.vertical, 10)
+               .frame(maxWidth: .infinity, minHeight: 72, alignment: .leading) // sin width fijo
+               .background(
+                   RoundedRectangle(cornerRadius: 12, style: .continuous)
+                       .fill(Color(.systemBackground))
+               )
+               // .shadow(radius: 3, y: 1) // opcional
+               .contentShape(Rectangle()) // para que sea fácil de tocar si luego le pones onTapGesture
+           }
 }
 
 #Preview {
